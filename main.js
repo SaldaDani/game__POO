@@ -47,9 +47,13 @@ class Game {
     }
   
     mover(evento) {
-      if (evento.key === "ArrowRight") {
+      const container = document.getElementById("game-container"); // Obtener el contenedor
+      const containerWidth = container.offsetWidth; //(offset propiedad para medir el ancho/alto) Ancho del contenedor
+      const containerHeight = container.offsetHeight; // Altura del contenedor
+
+      if (evento.key === "ArrowRight" && this.x + this.width + this.velocidad <= containerWidth) { //&& -> el persona no pasa el borde derecho
         this.x += this.velocidad;
-      } else if (evento.key === "ArrowLeft") {
+      } else if (evento.key === "ArrowLeft" && this.x - this.velocidad >= 0) { //&& -> el personaje no pasa el borde izquierdo
         this.x -= this.velocidad;
       } else if (evento.key === "ArrowUp") {
         this.saltar();
@@ -58,8 +62,9 @@ class Game {
     }
   
     saltar() {
+      if (this.y <= 0) return; // Evita que el personaje suba más allá del límite superior
       this.saltando = true;
-      let alturaMaxima = this.y - 100;
+      let alturaMaxima = Math.max(this.y - 100, 0); //No permitir subir más allá del borde superior                      //this.y - 100;
       const salto = setInterval(() => {
         if (this.y > alturaMaxima) {
           this.y -= 100;
