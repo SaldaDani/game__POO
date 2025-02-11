@@ -35,16 +35,14 @@ class Game {
   
   class Personaje {
     constructor() {
-      this.x = 50;
+      this.x = 50
       this.y = 300;
-      this.width = 50; // Se agrega tamaño del personaje
-      this.height = 50;
+      this.width = 80; // Se agrega tamaño del personaje
+      this.height = 80;
       this.velocidad = 10;
       this.saltando = false;
-  
       this.element = document.createElement("div");
       this.element.classList.add("personaje");
-  
       this.actualizarPosicion();
     }
   
@@ -70,7 +68,8 @@ class Game {
           this.caer();
         }
         this.actualizarPosicion();
-      }, 20);
+      }, 
+      20);
     }
   
     caer() {
@@ -81,7 +80,8 @@ class Game {
           clearInterval(gravedad);
         }
         this.actualizarPosicion();
-      }, 20);
+      }, 
+      20);
     }
   
     actualizarPosicion() {
