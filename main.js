@@ -7,7 +7,12 @@ class Game {
       this.crearEscenario();
       this.agregarEventos();
       this.sonidoMoneda = new Audio("https://www.myinstants.com/media/sounds/mario-coin.mp3");
+      this.sonidoMoneda.volume = 0.5
       this.puntosElement = document.getElementById("puntos")
+      this.musicaFondo = new Audio("./sounds/background_sound.mp3"); 
+      this.musicaFondo.loop = true; 
+      this.musicaFondo.volume = 0.5; 
+      this.musicaFondo.play(); 
     }
     mostrarSangre(x, y) {
       // console.log(`Mostrando sangre en x: ${x}, y: ${y}`);
