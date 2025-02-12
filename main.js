@@ -9,6 +9,19 @@ class Game {
       this.sonidoMoneda = new Audio("https://www.myinstants.com/media/sounds/mario-coin.mp3");
       this.puntosElement = document.getElementById("puntos")
     }
+    mostrarSangre(x, y) {
+      // console.log(`Mostrando sangre en x: ${x}, y: ${y}`);
+      const sangre = document.createElement("div");
+      sangre.classList.add("sangre");
+      sangre.style.left = `${x}px`;
+      sangre.style.top = `${y}px`;
+      this.container.appendChild(sangre);
+      setTimeout(() => {
+        this.container.removeChild(sangre);
+      }, 500); 
+    }
+
+    
 
     reproducirSonidoMoneda() {
       this.sonidoMoneda.currentTime = 0; // Reinicia el sonido para que se pueda reproducir varias veces seguidas
@@ -19,7 +32,12 @@ class Game {
       this.personaje = new Personaje();
       this.container.appendChild(this.personaje.element);
       for (let i = 0; i < 5; i++) {
-        const moneda = new Moneda();
+        let moneda;
+        if (Math.random() < 0.5) { // 50% de probabilidad de crear una moneda dorada
+            moneda = new MonedaDorada();
+        } else {
+            moneda = new Moneda();
+        }
         this.monedas.push(moneda);
         this.container.appendChild(moneda.element);
       }
@@ -35,14 +53,15 @@ class Game {
             this.container.removeChild(moneda.element);
             this.monedas.splice(index, 1);
             this.reproducirSonidoMoneda();
-            this.actualizarPuntuacion(5);
+            this.actualizarPuntuacion(moneda.obtenerPuntuacion());
+            this.mostrarSangre(moneda.x, moneda.y);
           }
         });
       }, 100);
     }
     actualizarPuntuacion(puntos){
       this.puntuacion += puntos;
-      this.puntosElement.textContent=`${this.puntuacion}`;
+      this.puntosElement.textContent=`Puntos: ${this.puntuacion}`;
     }
   }
   
@@ -134,6 +153,23 @@ class Game {
       this.element.style.left = `${this.x}px`;
       this.element.style.top = `${this.y}px`;
     }
+
+    obtenerPuntuacion() {
+      return 5; 
   }
+  }
+
+  class MonedaDorada extends Moneda {
+    constructor() {
+        super(); 
+        this.element.classList.add("moneda-dorada"); 
+    }
+
+    obtenerPuntuacion() {
+        return 10; 
+    }
+}
+
+
   
   const juego = new Game();
