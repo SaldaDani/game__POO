@@ -77,7 +77,7 @@ class Game {
     saltar() {
       if (this.y <= 0) return; // Evita que el personaje suba más allá del límite superior
       this.saltando = true;
-      let alturaMaxima = Math.max(this.y - 300, 0); //No permitir subir más allá del borde superior                      //this.y - 100;
+      let alturaMaxima = Math.max(this.y - 300, 0); //No permitir subir más allá del borde superior        
       const salto = setInterval(() => {
         if (this.y > alturaMaxima) {
           this.y -= 100;

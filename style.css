@@ -14,6 +14,7 @@ body {
     font-size: 20px; 
     text-align: center; 
     margin: 10px 0;
+    padding: 50%;
     font-family: 'Press Start 2P', cursive;
     color: #fff;
     background-color: #000;
@@ -22,12 +23,10 @@ body {
     display: inline-block;
     text-transform: uppercase;
     box-shadow: 4px 4px 0px #313131, 8px 8px 0px #484829;
+    width: 10%;
    }
 
   #game-container {
-    /* position: relative;
-    width: 800px;
-    height: 400px; */
     position: relative;
     width: 90%; 
     max-width: 800px; 
