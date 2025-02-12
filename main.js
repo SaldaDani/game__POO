@@ -6,7 +6,14 @@ class Game {
       this.puntuacion = 0;
       this.crearEscenario();
       this.agregarEventos();
+      this.sonidoMoneda = new Audio("https://www.myinstants.com/media/sounds/mario-coin.mp3");
+      this.puntosElement = document.getElementById("puntos")
     }
+
+    reproducirSonidoMoneda() {
+      this.sonidoMoneda.currentTime = 0; // Reinicia el sonido para que se pueda reproducir varias veces seguidas
+      this.sonidoMoneda.play();
+  }
   
     crearEscenario() {  //definimos los elementos que queremos que esten dentro del escenario
       this.personaje = new Personaje();
@@ -27,9 +34,15 @@ class Game {
           if (this.personaje.colisionaCon(moneda)) {
             this.container.removeChild(moneda.element);
             this.monedas.splice(index, 1);
+            this.reproducirSonidoMoneda();
+            this.actualizarPuntuacion(5);
           }
         });
       }, 100);
+    }
+    actualizarPuntuacion(puntos){
+      this.puntuacion += puntos;
+      this.puntosElement.textContent=`${this.puntuacion}`;
     }
   }
   
@@ -55,7 +68,7 @@ class Game {
         this.x += this.velocidad;
       } else if (evento.key === "ArrowLeft" && this.x - this.velocidad >= 0) { //&& -> el personaje no pasa el borde izquierdo
         this.x -= this.velocidad;
-      } else if (evento.key === "ArrowUp") {
+      } else if (evento.key === "ArrowUp" && !this.saltando) {
         this.saltar();
       }
       this.actualizarPosicion();
@@ -64,7 +77,7 @@ class Game {
     saltar() {
       if (this.y <= 0) return; // Evita que el personaje suba más allá del límite superior
       this.saltando = true;
-      let alturaMaxima = Math.max(this.y - 100, 0); //No permitir subir más allá del borde superior                      //this.y - 100;
+      let alturaMaxima = Math.max(this.y - 300, 0); //No permitir subir más allá del borde superior                      //this.y - 100;
       const salto = setInterval(() => {
         if (this.y > alturaMaxima) {
           this.y -= 100;
@@ -83,6 +96,7 @@ class Game {
           this.y += 10;
         } else {
           clearInterval(gravedad);
+          this.saltando = false;
         }
         this.actualizarPosicion();
       }, 

@@ -10,6 +10,12 @@ body {
     flex-direction: column;
   }
 
+  #puntos { 
+    font-size: 20px; 
+    text-align: center; 
+    margin: 10px 0;
+   }
+
   #game-container {
     position: relative;
     width: 800px;
