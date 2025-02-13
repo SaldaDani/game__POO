@@ -17,13 +17,23 @@ class Game {
     this.musicaFondo.loop = true;
     this.musicaFondo.volume = 0.5;
     this.musicaFondo.play();
+    document.addEventListener("keydown", () => {
+      this.musicaFondo.play();
+    }, { once: true });
+    const stopMusicButton = document.getElementById("stopMusic");
+    stopMusicButton.addEventListener("click", () => {
+      if (this.musicaFondo.paused) {
+        this.musicaFondo.play();
+      }else{
+        this.musicaFondo.pause();
+      }
+    });
   }
   reproducirSonidoMoneda() {
     this.sonidoMoneda.currentTime = 0; // Reinicia el sonido para que se pueda reproducir varias veces seguidas
     this.sonidoMoneda.play();
   }
   mostrarSangre(x, y) {
-    // console.log(`Mostrando sangre en x: ${x}, y: ${y}`);
     const sangre = document.createElement("div");
     sangre.classList.add("sangre");
     sangre.style.left = `${x}px`;
