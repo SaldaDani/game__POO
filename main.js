@@ -95,7 +95,7 @@ class Personaje {
 
   mover(evento) {
     const container = document.getElementById("game-container"); // Obtener el contenedor
-    const containerWidth = container.offsetWidth; //(offset propiedad para medir el ancho/alto) Ancho del contenedor
+    const containerWidth = container.offsetWidth; //(para medir el ancho/alto) Ancho del contenedor
     const containerHeight = container.offsetHeight; // Altura del contenedor
 
     if (evento.key === "ArrowRight" && this.x + this.width + this.velocidad <= containerWidth) { //&& -> el persona no pasa el borde derecho
@@ -114,7 +114,7 @@ class Personaje {
     let alturaMaxima = Math.max(this.y - 300, 0); //No permitir subir más allá del borde superior        
     const salto = setInterval(() => {
       if (this.y > alturaMaxima) {
-        this.y -= 100;
+        this.y -= 10;
       } else {
         clearInterval(salto);
         this.caer();
