@@ -70,9 +70,18 @@ class Game {
           this.reproducirSonidoMoneda();
           this.actualizarPuntuacion(moneda.obtenerPuntuacion());
           this.mostrarSangre(moneda.x, moneda.y);
+          if (this.monedas.length === 0) {
+            this.mostrarFinalDePartida();
+          }
         }
       });
     }, 100);
+  }
+  mostrarFinalDePartida() {
+    const mensajeFinal = document.createElement("div");
+    mensajeFinal.classList.add("mensaje-final");
+    mensajeFinal.textContent = "Fin de partida";
+    this.container.appendChild(mensajeFinal);
   }
   actualizarPuntuacion(puntos) {
     this.puntuacion += puntos;
