@@ -1,40 +1,171 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    background-color: #b8b8b8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-color: #1e2220;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+#puntos {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+  padding: 50%;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+  background-color: #000;
+  padding: 10px;
+  border: 3px solid #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px #313131, 8px 8px 0px #484829;
+  width: 10%;
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive; 
+  font-size: 48px; 
+  color: #ff6f61; 
+  text-shadow: 
+      2px 2px 0 #6b5b95, 
+      -2px -2px 0 #88b04b; 
+  background: linear-gradient(45deg, #ff6f61, #6b5b95, #88b04b); 
+  -webkit-background-clip: text; 
+  background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  text-transform: uppercase; 
+  letter-spacing: 4px; 
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+      text-shadow: 
+          2px 2px 0 #6b5b95, 
+          -2px -2px 0 #88b04b;
   }
-  
+  to {
+      text-shadow: 
+          4px 4px 0 #6b5b95, 
+          -4px -4px 0 #88b04b,
+          0 0 10px #ff6f61;
+  }
+}
+
+
+#game-container {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 50vh;
+  max-height: 400px;
+  margin: 20px auto;
+  border: 10px solid #6d6d6d;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url(images/background.png);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+button {
+  font-family: 'Press Start 2P', cursive; /* Fuente retro pixelada */
+  font-size: 16px; /* Tamaño de fuente */
+  color: #ff6f61; /* Color coral suave */
+  background-color: #6b5b95; /* Fondo morado suave */
+  border: 2px solid #88b04b; /* Borde verde suave */
+  padding: 10px 20px; /* Espaciado interno */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 2px; /* Espaciado entre letras */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  box-shadow: 
+      4px 4px 0 #88b04b, /* Sombra verde suave */
+      -4px -4px 0 #ff6f61; /* Sombra coral suave */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+button:hover {
+  background-color: #88b04b; /* Fondo verde suave al pasar el mouse */
+  color: #6b5b95; /* Texto morado suave al pasar el mouse */
+  box-shadow: 
+      6px 6px 0 #ff6f61, /* Sombra coral suave al pasar el mouse */
+      -6px -6px 0 #6b5b95; /* Sombra morada suave al pasar el mouse */
+  transform: translateY(-2px); /* Efecto de levitación */
+}
+
+button:active {
+  transform: translateY(0); /* Volver a la posición original al hacer clic */
+  box-shadow: 
+      2px 2px 0 #88b04b, /* Sombra verde suave al hacer clic */
+      -2px -2px 0 #ff6f61; /* Sombra coral suave al hacer clic */
+}
+
+.personaje {
+  position: absolute;
+  width: 10%;
+  max-width: 50px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url(https://cdn.pixabay.com/photo/2012/04/12/20/28/frog-30524_640.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.moneda {
+  position: absolute;
+  width: 5%;
+  max-width: 30px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url(./images/house-fly-24629_640.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.moneda-dorada {
+  width: 10%;
+  max-width: 70px;
+  height: auto;
+  background-image: url(images/monedaDorada.png);
+}
+
+@keyframes sangre {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.sangre {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn.pixabay.com/photo/2023/01/11/21/08/strawberry-7712845_640.png");
+  /* background-color: red; */
+  background-size: cover;
+  background-position: center;
+  animation: sangre 1s ease-out;
+}
+
+@media (max-width: 600px) {
+  #puntos {
+    font-size: 16px;
+  }
+
   #game-container {
-    position: relative;
-    width: 800px;
-    height: 400px;
-    margin: 20px auto;
-    border: 10px solid #6d6d6d;
-    background: #fff;
-    overflow: hidden;
-    border-radius: 30px;
+    height: 60vh;
   }
-  
-  .personaje {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: #07a07c;
-    border-radius: 50%;
-    border: 5px solid #07a050;
-  }
-  
-  .moneda {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: gold;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 2px rgba(255, 223, 0, 0.8);
-  }
+}
