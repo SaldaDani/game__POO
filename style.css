@@ -2,7 +2,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow: hidden;
-  background-color: #1e2220;
+  background-image: url(./images/fondo2.png);
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
